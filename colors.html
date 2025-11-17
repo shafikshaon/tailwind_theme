@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette - Dashboard Component Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <a href="index.html" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Components
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-16">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Color Palette</h2>
+                <p class="text-gray-600 mb-6">Purple color scheme with semantic colors for various states</p>
+
+                <!-- Primary Purple Colors -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Primary Purple</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-50 border border-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">50</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#faf5ff</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-100 border border-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">100</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#f3e8ff</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-200 border border-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">200</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#e9d5ff</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-300 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-900">300</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#d8b4fe</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-400 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">400</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#c084fc</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-500 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">500</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#a855f7</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-600 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">600</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#9333ea</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-700 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">700</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#7e22ce</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-800 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">800</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#6b21a8</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-purple-900 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">900</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">#581c87</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Colors -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Semantic Colors</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Success -->
+                        <div class="space-y-2">
+                            <div class="h-24 rounded-lg bg-green-600 flex items-center justify-center">
+                                <span class="text-white font-semibold">Success</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">green-600</p>
+                            <p class="text-xs text-gray-500">Used for success states, confirmations</p>
+                        </div>
+                        <!-- Warning -->
+                        <div class="space-y-2">
+                            <div class="h-24 rounded-lg bg-yellow-500 flex items-center justify-center">
+                                <span class="text-gray-900 font-semibold">Warning</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">yellow-500</p>
+                            <p class="text-xs text-gray-500">Used for warnings, cautions</p>
+                        </div>
+                        <!-- Danger -->
+                        <div class="space-y-2">
+                            <div class="h-24 rounded-lg bg-red-600 flex items-center justify-center">
+                                <span class="text-white font-semibold">Danger</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">red-600</p>
+                            <p class="text-xs text-gray-500">Used for errors, destructive actions</p>
+                        </div>
+                        <!-- Info -->
+                        <div class="space-y-2">
+                            <div class="h-24 rounded-lg bg-blue-600 flex items-center justify-center">
+                                <span class="text-white font-semibold">Info</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">blue-600</p>
+                            <p class="text-xs text-gray-500">Used for informational messages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neutral Grays -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Neutral Grays</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">50</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-50</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">100</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-100</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-200 flex items-center justify-center">
+                                <span class="text-xs font-mono text-gray-700">200</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-200</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-400 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">400</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-400</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-600 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">600</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-600</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 rounded-lg bg-gray-900 flex items-center justify-center">
+                                <span class="text-xs font-mono text-white">900</span>
+                            </div>
+                            <p class="text-xs font-mono text-gray-600">gray-900</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Components - Dashboard Component Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <a href="index.html" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Components
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section id="selects" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Select Components</h2>
+                    <p class="text-gray-600 mb-6">Various select dropdown styles and configurations</p>
+
+                    <!-- Basic Select -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Select</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="basic-select" class="block text-sm font-medium text-gray-700 mb-1">Choose an option</label>
+                                <select id="basic-select" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                    <option>Select an option</option>
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                    <option>Option 4</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="disabled-select" class="block text-sm font-medium text-gray-400 mb-1">Disabled Select</label>
+                                <select id="disabled-select" disabled class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed">
+                                    <option>Disabled option</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select with Icon -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Select with Icon</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="country-select" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <select id="country-select" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                        <option>United States</option>
+                                        <option>Canada</option>
+                                        <option>United Kingdom</option>
+                                        <option>Australia</option>
+                                        <option>Germany</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="category-select" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                        </svg>
+                                    </div>
+                                    <select id="category-select" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                        <option>Technology</option>
+                                        <option>Business</option>
+                                        <option>Design</option>
+                                        <option>Marketing</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grouped Select Options -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Grouped Select Options</h3>
+                        <div class="max-w-md">
+                            <label for="grouped-select" class="block text-sm font-medium text-gray-700 mb-1">Choose a framework</label>
+                            <select id="grouped-select" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                <optgroup label="Frontend Frameworks">
+                                    <option>React</option>
+                                    <option>Vue.js</option>
+                                    <option>Angular</option>
+                                    <option>Svelte</option>
+                                </optgroup>
+                                <optgroup label="Backend Frameworks">
+                                    <option>Express.js</option>
+                                    <option>Django</option>
+                                    <option>Laravel</option>
+                                    <option>Ruby on Rails</option>
+                                </optgroup>
+                                <optgroup label="CSS Frameworks">
+                                    <option>Tailwind CSS</option>
+                                    <option>Bootstrap</option>
+                                    <option>Material UI</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Select -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Multiple Select</h3>
+                        <div class="max-w-md">
+                            <label for="multiple-select" class="block text-sm font-medium text-gray-700 mb-1">Select multiple skills (Hold Ctrl/Cmd)</label>
+                            <select id="multiple-select" multiple size="6" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                <option>JavaScript</option>
+                                <option>Python</option>
+                                <option>Java</option>
+                                <option>C++</option>
+                                <option>Ruby</option>
+                                <option>Go</option>
+                                <option>PHP</option>
+                                <option>Swift</option>
+                            </select>
+                            <p class="mt-1 text-xs text-gray-500">Hold Ctrl (Windows) or Cmd (Mac) to select multiple items</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

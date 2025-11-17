@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography - Dashboard Component Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <a href="index.html" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Components
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section id="typography" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Typography</h2>
+                    <p class="text-gray-600 mb-6">Text styles, headings, and formatting options</p>
+
+                    <!-- Headings -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Headings</h3>
+                        <div class="space-y-4">
+                            <h1 class="text-5xl font-bold text-gray-900">Heading 1 - 5xl (3rem / 48px)</h1>
+                            <h2 class="text-4xl font-bold text-gray-900">Heading 2 - 4xl (2.25rem / 36px)</h2>
+                            <h3 class="text-3xl font-bold text-gray-900">Heading 3 - 3xl (1.875rem / 30px)</h3>
+                            <h4 class="text-2xl font-semibold text-gray-900">Heading 4 - 2xl (1.5rem / 24px)</h4>
+                            <h5 class="text-xl font-semibold text-gray-900">Heading 5 - xl (1.25rem / 20px)</h5>
+                            <h6 class="text-lg font-semibold text-gray-900">Heading 6 - lg (1.125rem / 18px)</h6>
+                        </div>
+                    </div>
+
+                    <!-- Body Text -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Body Text</h3>
+                        <div class="space-y-4">
+                            <p class="text-base text-gray-900">
+                                <span class="font-semibold">Base (default)</span> - This is regular body text at the base size (1rem / 16px).
+                                Perfect for main content and paragraphs. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-semibold">Small</span> - Smaller text size (0.875rem / 14px) useful for secondary information and captions.
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="font-semibold">Extra Small</span> - Very small text (0.75rem / 12px) for footnotes and minor details.
+                            </p>
+                            <p class="text-lg text-gray-900">
+                                <span class="font-semibold">Large</span> - Larger body text (1.125rem / 18px) for emphasis or lead paragraphs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Text Styles -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Text Styles</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-900 font-bold">Bold Text - font-bold</p>
+                            <p class="text-gray-900 font-semibold">Semibold Text - font-semibold</p>
+                            <p class="text-gray-900 font-medium">Medium Text - font-medium</p>
+                            <p class="text-gray-900 font-normal">Normal Text - font-normal</p>
+                            <p class="text-gray-900 italic">Italic Text - italic</p>
+                            <p class="text-gray-900 underline">Underlined Text - underline</p>
+                            <p class="text-gray-900 line-through">Strikethrough Text - line-through</p>
+                            <p class="text-gray-900 uppercase">Uppercase Text - uppercase</p>
+                            <p class="text-gray-900 lowercase">LOWERCASE TEXT - lowercase</p>
+                            <p class="text-gray-900 capitalize">capitalized text - capitalize</p>
+                        </div>
+                    </div>
+
+                    <!-- Lists -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Lists</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">Unordered List</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>First item in the list</li>
+                                    <li>Second item in the list</li>
+                                    <li>Third item with more content
+                                        <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                                            <li>Nested item one</li>
+                                            <li>Nested item two</li>
+                                        </ul>
+                                    </li>
+                                    <li>Fourth item in the list</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">Ordered List</h4>
+                                <ol class="list-decimal list-inside text-gray-600 space-y-1">
+                                    <li>First numbered item</li>
+                                    <li>Second numbered item</li>
+                                    <li>Third numbered item
+                                        <ol class="list-decimal list-inside ml-6 mt-1 space-y-1">
+                                            <li>Nested numbered item</li>
+                                            <li>Another nested item</li>
+                                        </ol>
+                                    </li>
+                                    <li>Fourth numbered item</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code & Quotes -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Code & Quotes</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Inline Code:</p>
+                                <p class="text-gray-900">Use the <code class="px-2 py-1 bg-gray-100 text-purple-600 rounded text-sm font-mono">className</code> prop to style your components.</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Code Block:</p>
+                                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm font-mono">function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));</code></pre>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Blockquote:</p>
+                                <blockquote class="border-l-4 border-purple-600 pl-4 py-2 bg-purple-50 italic text-gray-700">
+                                    "Design is not just what it looks like and feels like. Design is how it works."
+                                    <footer class="text-sm text-gray-600 mt-2 not-italic">— Steve Jobs</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

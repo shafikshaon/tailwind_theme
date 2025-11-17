@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination - Dashboard Component Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <a href="index.html" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Components
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section id="pagination" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Pagination</h2>
+                    <p class="text-gray-600 mb-6">Various pagination styles for navigation</p>
+
+                    <!-- Numbered Pagination -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Numbered Pagination</h3>
+                        <nav class="flex items-center justify-center" aria-label="Pagination">
+                            <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg mr-2" aria-label="Previous page">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
+                            <button class="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg mr-2">1</button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">2</button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">3</button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">4</button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">5</button>
+                            <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg" aria-label="Next page">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Pagination with Ellipsis -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Pagination with Ellipsis</h3>
+                        <nav class="flex items-center justify-center" aria-label="Pagination">
+                            <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg mr-2" aria-label="Previous">
+                                Previous
+                            </button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">1</button>
+                            <button class="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg mr-2">2</button>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">3</button>
+                            <span class="px-4 py-2 text-sm text-gray-500 mr-2">...</span>
+                            <button class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg mr-2">10</button>
+                            <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg" aria-label="Next">
+                                Next
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Pagination with Page Info -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Pagination with Page Info</h3>
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <p class="text-sm text-gray-700">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">97</span> results
+                            </p>
+                            <nav class="flex items-center" aria-label="Pagination">
+                                <button class="px-4 py-2 text-sm border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-l-lg">
+                                    Previous
+                                </button>
+                                <button class="px-4 py-2 text-sm border-t border-b border-gray-300 bg-purple-600 text-white">1</button>
+                                <button class="px-4 py-2 text-sm border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+                                <button class="px-4 py-2 text-sm border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+                                <button class="px-4 py-2 text-sm border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-r-lg">
+                                    Next
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Simple Prev/Next Only -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Simple Prev/Next Only</h3>
+                        <nav class="flex items-center justify-between" aria-label="Pagination">
+                            <button class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                Previous
+                            </button>
+                            <button class="flex items-center gap-2 px-4 py-2 text-sm text-white bg-purple-600 rounded-lg hover:bg-purple-700">
+                                Next
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- Compact Mobile Version -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Compact Mobile Pagination</h3>
+                        <nav class="flex items-center justify-center gap-2" aria-label="Pagination">
+                            <button class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded" aria-label="Previous">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
+                            <span class="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded">
+                                Page 2 of 10
+                            </span>
+                            <button class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded" aria-label="Next">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
