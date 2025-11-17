@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Investment Accounts - Money Manager">
+    <title>Investment Accounts - Money Manager</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        *:focus-visible {
+            outline: 2px solid #9333ea;
+            outline-offset: 2px;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .sidebar-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideInUp 0.4s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full transform bg-gradient-to-b from-purple-900 to-purple-800 text-white transition-transform duration-300 ease-in-out lg:translate-x-0">
+        <div class="flex h-full flex-col">
+            <!-- Logo -->
+            <div class="flex h-16 items-center justify-between border-b border-purple-700 px-6">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h1 class="text-xl font-bold">Money Manager</h1>
+                </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-purple-700 rounded p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 overflow-y-auto sidebar-scroll px-4 py-6">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="../../money-manager-dashboard.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700">
+                            <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 bg-purple-700 rounded-lg font-medium">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
+                                <span>Accounts</span>
+                            </div>
+                            <svg class="h-4 w-4 transition-transform nav-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform: rotate(180deg);">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1">
+                            <a href="all-accounts.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">All Accounts</a>
+                            <a href="bank-accounts.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Bank Accounts</a>
+                            <a href="credit-cards.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Credit Cards</a>
+                            <a href="savings.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Savings</a>
+                            <a href="investments.html" class="block px-4 py-2 text-sm bg-purple-600 text-white rounded">Investments</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="border-t border-purple-700 p-4">
+                <div class="flex items-center">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=9333ea&color=fff" alt="User" class="h-10 w-10 rounded-full">
+                    <div class="ml-3 flex-1">
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-purple-300">john@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="lg:pl-64">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Investment Accounts</h2>
+                        <p class="text-sm text-gray-500">Track your investment portfolio and performance</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button class="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 text-sm font-medium">
+                        <svg class="h-4 w-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Export Report
+                    </button>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium">
+                        <svg class="h-4 w-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Add Investment
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-4 md:p-6 lg:p-8">
+            <!-- Investment Summary Stats -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <div class="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-xl p-6 shadow-lg animate-slide-in">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-indigo-100">Total Portfolio Value</div>
+                        <div class="bg-indigo-500 bg-opacity-30 p-2 rounded-lg">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">$141,746.44</div>
+                    <div class="flex items-center text-sm">
+                        <svg class="h-4 w-4 mr-1 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                        <span class="text-green-300 font-medium">+18.7%</span>
+                        <span class="text-indigo-100 ml-2">YTD return</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.1s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Total Gain/Loss</div>
+                        <div class="bg-green-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">+$23,457.89</div>
+                    <div class="text-sm text-green-600">+19.8% all-time</div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Today's Change</div>
+                        <div class="bg-green-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">+$1,234.56</div>
+                    <div class="text-sm text-green-600">+0.88%</div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.3s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Annual Dividends</div>
+                        <div class="bg-blue-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">$3,245.78</div>
+                    <div class="text-sm text-gray-500">2.29% yield</div>
+                </div>
+            </div>
+
+            <!-- Asset Allocation -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Asset Allocation</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                    <span class="text-sm font-medium text-gray-900">Stocks</span>
+                                </div>
+                                <span class="text-sm font-semibold text-gray-900">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">$92,135.19</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    <span class="text-sm font-medium text-gray-900">Bonds</span>
+                                </div>
+                                <span class="text-sm font-semibold text-gray-900">20%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">$28,349.29</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                                    <span class="text-sm font-medium text-gray-900">ETFs</span>
+                                </div>
+                                <span class="text-sm font-semibold text-gray-900">10%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">$14,174.64</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <span class="text-sm font-medium text-gray-900">Cash</span>
+                                </div>
+                                <span class="text-sm font-semibold text-gray-900">5%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 5%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">$7,087.32</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Performance Chart</h3>
+                    <div class="mb-4">
+                        <div class="flex items-center space-x-2 text-sm">
+                            <button class="px-3 py-1 bg-purple-600 text-white rounded font-medium">1Y</button>
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">3Y</button>
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">5Y</button>
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">All</button>
+                        </div>
+                    </div>
+                    <div class="h-64 flex items-end space-x-2">
+                        <div class="flex-1 bg-gradient-to-t from-indigo-200 to-indigo-300 rounded-t" style="height: 45%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-200 to-indigo-300 rounded-t" style="height: 48%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-200 to-indigo-300 rounded-t" style="height: 52%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-300 to-indigo-400 rounded-t" style="height: 58%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-300 to-indigo-400 rounded-t" style="height: 64%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-300 to-indigo-400 rounded-t" style="height: 70%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-400 to-indigo-500 rounded-t" style="height: 76%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-400 to-indigo-500 rounded-t" style="height: 82%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-500 to-indigo-600 rounded-t" style="height: 88%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-500 to-indigo-600 rounded-t" style="height: 94%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-600 to-indigo-700 rounded-t" style="height: 97%"></div>
+                        <div class="flex-1 bg-gradient-to-t from-indigo-600 to-indigo-700 rounded-t" style="height: 100%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500 mt-2">
+                        <span>Jan</span>
+                        <span>Feb</span>
+                        <span>Mar</span>
+                        <span>Apr</span>
+                        <span>May</span>
+                        <span>Jun</span>
+                        <span>Jul</span>
+                        <span>Aug</span>
+                        <span>Sep</span>
+                        <span>Oct</span>
+                        <span>Nov</span>
+                        <span>Dec</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Accounts -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Investment Accounts</h3>
+                <div class="space-y-6">
+                    <!-- 401(k) Account -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-700 to-indigo-600 p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-1">Fidelity 401(k)</h4>
+                                    <p class="text-indigo-100 text-sm">Retirement - Employer Sponsored</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs text-indigo-200 mb-1">Portfolio Value</div>
+                                    <div class="text-3xl font-bold">$98,456.32</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-indigo-200 mb-1">Total Contributions</p>
+                                    <p class="text-sm font-semibold">$78,500.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-indigo-200 mb-1">Total Gain</p>
+                                    <p class="text-sm font-semibold text-green-300">+$19,956.32</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-indigo-200 mb-1">YTD Return</p>
+                                    <p class="text-sm font-semibold text-green-300">+18.7%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h5 class="font-semibold text-gray-900 mb-3">Holdings</h5>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Vanguard S&P 500 Index</p>
+                                            <p class="text-xs text-gray-500">VFIAX - 45% allocation</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$44,305.34</p>
+                                            <p class="text-xs text-green-600">+21.3%</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Vanguard Total Bond Market</p>
+                                            <p class="text-xs text-gray-500">VBTLX - 30% allocation</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$29,536.90</p>
+                                            <p class="text-xs text-green-600">+3.8%</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Vanguard Intl Stock Index</p>
+                                            <p class="text-xs text-gray-500">VTIAX - 25% allocation</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$24,614.08</p>
+                                            <p class="text-xs text-green-600">+14.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <p class="text-xs text-blue-600 mb-1">Your Contribution</p>
+                                    <p class="text-lg font-semibold text-blue-700">$750/month</p>
+                                    <p class="text-xs text-gray-600 mt-1">6% of salary</p>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <p class="text-xs text-green-600 mb-1">Employer Match</p>
+                                    <p class="text-lg font-semibold text-green-700">$375/month</p>
+                                    <p class="text-xs text-gray-600 mt-1">50% up to 6%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Robinhood Brokerage -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div class="bg-gradient-to-r from-teal-700 to-teal-600 p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-1">Robinhood</h4>
+                                    <p class="text-teal-100 text-sm">Individual Brokerage Account</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs text-teal-200 mb-1">Portfolio Value</div>
+                                    <div class="text-3xl font-bold">$43,290.12</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-teal-200 mb-1">Total Invested</p>
+                                    <p class="text-sm font-semibold">$36,788.55</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-teal-200 mb-1">Total Gain</p>
+                                    <p class="text-sm font-semibold text-green-300">+$6,501.57</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-teal-200 mb-1">Return</p>
+                                    <p class="text-sm font-semibold text-green-300">+17.7%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-4">
+                                <h5 class="font-semibold text-gray-900 mb-3">Top Holdings</h5>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">
+                                                    AAPL
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Apple Inc.</p>
+                                                    <p class="text-xs text-gray-500">45 shares</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$8,145.75</p>
+                                            <p class="text-xs text-green-600">+$1,234.50 (+17.9%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-8 h-8 bg-purple-600 rounded flex items-center justify-center text-white font-bold text-xs">
+                                                    MSFT
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Microsoft Corp.</p>
+                                                    <p class="text-xs text-gray-500">32 shares</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$12,256.32</p>
+                                            <p class="text-xs text-green-600">+$2,145.78 (+21.2%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-white font-bold text-xs">
+                                                    TSLA
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Tesla Inc.</p>
+                                                    <p class="text-xs text-gray-500">28 shares</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$7,284.00</p>
+                                            <p class="text-xs text-green-600">+$982.50 (+15.6%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center text-white font-bold text-xs">
+                                                    NVDA
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">NVIDIA Corp.</p>
+                                                    <p class="text-xs text-gray-500">20 shares</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$9,840.50</p>
+                                            <p class="text-xs text-green-600">+$1,845.25 (+23.1%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-8 h-8 bg-yellow-600 rounded flex items-center justify-center text-white font-bold text-xs">
+                                                    SPY
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">SPDR S&P 500 ETF</p>
+                                                    <p class="text-xs text-gray-500">12 shares</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-sm font-semibold text-gray-900">$5,763.55</p>
+                                            <p class="text-xs text-green-600">+$293.54 (+5.4%)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="w-full px-4 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium">
+                                View All Holdings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                        <select class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>All Accounts</option>
+                            <option>401(k)</option>
+                            <option>Brokerage</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Security</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Shares</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 15, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Buy</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">VFIAX</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">2.456</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-gray-900">$1,125.00</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 12, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Dividend</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">AAPL</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">-</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-green-600">+$10.35</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 10, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Buy</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">NVDA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-gray-900">$2,450.00</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 8, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Sell</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">TSLA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-gray-900">$780.50</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 1, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Contribution</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">401(k)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">-</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-green-600">+$1,125.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+
+        openSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-collapsible').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.nextElementSibling;
+                const chevron = this.querySelector('.nav-chevron');
+
+                if (submenu && submenu.classList.contains('nav-submenu')) {
+                    submenu.classList.toggle('hidden');
+                    if (chevron) {
+                        chevron.style.transform = submenu.classList.contains('hidden')
+                            ? 'rotate(0deg)'
+                            : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

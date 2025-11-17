@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Data - Money Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe',
+                            400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce',
+                            800: '#6b21a8', 900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full transform bg-gradient-to-b from-purple-900 to-purple-800 text-white transition-transform duration-300 ease-in-out lg:translate-x-0">
+        <div class="flex h-full flex-col">
+            <div class="flex h-16 items-center justify-between border-b border-purple-700 px-6">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h1 class="text-xl font-bold">Money Manager</h1>
+                </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-purple-700 rounded p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto px-4 py-6">
+                <ul class="space-y-1">
+                    <li><a href="../../money-manager-dashboard.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 text-purple-100 hover:bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                <span>Reports</span>
+                            </div>
+                            <svg class="h-4 w-4 nav-chevron" style="transform: rotate(180deg)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1">
+                            <a href="monthly-report.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Monthly Report</a>
+                            <a href="yearly-report.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Yearly Report</a>
+                            <a href="category-analysis.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Category Analysis</a>
+                            <a href="trends.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Trends</a>
+                            <a href="export.html" class="block px-4 py-2 text-sm bg-purple-600 text-white rounded">Export Data</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="lg:pl-64">
+        <header class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Export Data & Reports</h2>
+                        <p class="text-sm text-gray-500">Download your financial data in various formats</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-4 md:p-6 lg:p-8">
+            <!-- Quick Export Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <span class="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">CSV</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Export to CSV</h3>
+                    <p class="text-sm text-gray-600 mb-4">Download all transactions as spreadsheet-compatible CSV file</p>
+                    <button class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+                        Download CSV
+                    </button>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-red-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        </div>
+                        <span class="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded">PDF</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Export to PDF</h3>
+                    <p class="text-sm text-gray-600 mb-4">Generate a formatted PDF report with charts and summaries</p>
+                    <button class="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium">
+                        Download PDF
+                    </button>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">XLSX</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Export to Excel</h3>
+                    <p class="text-sm text-gray-600 mb-4">Export as Excel workbook with multiple sheets and formulas</p>
+                    <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                        Download Excel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Custom Export Options -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Custom Export Options</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Left Column: Filters -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">From</label>
+                                    <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" value="2025-01-01">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">To</label>
+                                    <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" value="2025-11-17">
+                                </div>
+                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <button class="px-3 py-1 text-xs border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50">This Month</button>
+                                <button class="px-3 py-1 text-xs border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Last Month</button>
+                                <button class="px-3 py-1 text-xs border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Last 3 Months</button>
+                                <button class="px-3 py-1 text-xs border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">This Year</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Transaction Type</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Income</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Expenses</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Transfers</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Categories</label>
+                            <select multiple class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" style="min-height: 120px;">
+                                <option selected>All Categories</option>
+                                <option>Food & Dining</option>
+                                <option>Transportation</option>
+                                <option>Shopping</option>
+                                <option>Bills & Utilities</option>
+                                <option>Entertainment</option>
+                                <option>Healthcare</option>
+                                <option>Education</option>
+                                <option>Personal Care</option>
+                                <option>Salary</option>
+                                <option>Freelance</option>
+                            </select>
+                            <p class="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Accounts</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option>All Accounts</option>
+                                <option>Chase Checking</option>
+                                <option>Chase Credit Card</option>
+                                <option>Savings Account</option>
+                                <option>Debit Card</option>
+                                <option>PayPal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Export Settings -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="format" value="csv" checked class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                                    <div class="ml-3 flex-1">
+                                        <span class="text-sm font-medium text-gray-900">CSV (Comma Separated Values)</span>
+                                        <p class="text-xs text-gray-500">Compatible with Excel, Google Sheets, and most spreadsheet apps</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="format" value="pdf" class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                                    <div class="ml-3 flex-1">
+                                        <span class="text-sm font-medium text-gray-900">PDF (Portable Document Format)</span>
+                                        <p class="text-xs text-gray-500">Print-ready report with charts and summaries</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="format" value="xlsx" class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                                    <div class="ml-3 flex-1">
+                                        <span class="text-sm font-medium text-gray-900">Excel (XLSX)</span>
+                                        <p class="text-xs text-gray-500">Excel workbook with multiple sheets and pivot tables</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="format" value="json" class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                                    <div class="ml-3 flex-1">
+                                        <span class="text-sm font-medium text-gray-900">JSON</span>
+                                        <p class="text-xs text-gray-500">Structured data format for developers and integrations</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Options</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Include transaction notes</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Include category summaries</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Include attachments/receipts</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <span class="ml-2 text-sm text-gray-700">Include charts and visualizations</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                            <div class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <div>
+                                    <p class="text-sm font-semibold text-purple-900 mb-1">Export Preview</p>
+                                    <p class="text-xs text-purple-700">198 transactions will be included in this export</p>
+                                    <p class="text-xs text-purple-700">Date range: Jan 1, 2025 - Nov 17, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Generate Custom Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scheduled Reports -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-gray-900">Scheduled Reports</h3>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium text-sm">
+                        <svg class="h-4 w-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        New Schedule
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-4">Set up automatic report generation and email delivery</p>
+
+                <div class="space-y-4">
+                    <!-- Active Schedule 1 -->
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-2 rounded-lg mr-4">
+                                    <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Monthly Summary Report</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Detailed monthly report with all transactions and analysis</p>
+                                    <div class="flex flex-wrap gap-2 text-xs">
+                                        <span class="bg-purple-50 text-purple-700 px-2 py-1 rounded">PDF Format</span>
+                                        <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded">Every 1st of month</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Email: user@example.com</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-2">Next scheduled: December 1, 2025 at 9:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="flex items-center text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                                    Active
+                                </span>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Schedule 2 -->
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                                    <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Weekly Spending Snapshot</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Quick overview of the week's spending activity</p>
+                                    <div class="flex flex-wrap gap-2 text-xs">
+                                        <span class="bg-purple-50 text-purple-700 px-2 py-1 rounded">CSV Format</span>
+                                        <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded">Every Monday</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Email: user@example.com</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-2">Next scheduled: November 18, 2025 at 8:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="flex items-center text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                                    Active
+                                </span>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paused Schedule -->
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow opacity-60">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-2 rounded-lg mr-4">
+                                    <svg class="h-6 w-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Annual Tax Report</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Comprehensive annual report for tax purposes</p>
+                                    <div class="flex flex-wrap gap-2 text-xs">
+                                        <span class="bg-purple-50 text-purple-700 px-2 py-1 rounded">Excel Format</span>
+                                        <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded">Every January 15</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Email: accountant@example.com</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-2">Next scheduled: January 15, 2026</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="flex items-center text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                                    <span class="w-2 h-2 bg-gray-500 rounded-full mr-1"></span>
+                                    Paused
+                                </span>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export History -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Recent Export History</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Format</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Records</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 17, 2025 10:32 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">transactions_november_2025.csv</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">CSV</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">198</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">45 KB</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    <button class="text-purple-600 hover:text-purple-900 mr-3">Download</button>
+                                    <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 15, 2025 2:15 PM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">monthly_report_october.pdf</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">PDF</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">187</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1.2 MB</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    <button class="text-purple-600 hover:text-purple-900 mr-3">Download</button>
+                                    <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 10, 2025 9:00 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">q3_2025_financial_summary.xlsx</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">XLSX</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">542</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">234 KB</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    <button class="text-purple-600 hover:text-purple-900 mr-3">Download</button>
+                                    <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 1, 2025 8:05 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">monthly_summary_october.pdf</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">PDF</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">187</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1.1 MB</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    <button class="text-purple-600 hover:text-purple-900 mr-3">Download</button>
+                                    <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Oct 25, 2025 11:22 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">category_analysis_q3.json</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">JSON</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">542</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">67 KB</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+                                    <button class="text-purple-600 hover:text-purple-900 mr-3">Download</button>
+                                    <button class="text-gray-400 hover:text-red-600">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <p class="text-sm text-gray-600">Showing 5 most recent exports</p>
+                    <button class="text-sm text-purple-600 hover:text-purple-700 font-medium">View All History</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+
+        openSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-collapsible').forEach(button => {
+            button.addEventListener('click', function() {
+                const submenu = this.nextElementSibling;
+                const chevron = this.querySelector('.nav-chevron');
+                if (submenu && submenu.classList.contains('nav-submenu')) {
+                    submenu.classList.toggle('hidden');
+                    if (chevron) {
+                        chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
