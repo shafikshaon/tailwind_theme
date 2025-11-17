@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences - Money Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe',
+                            400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce',
+                            800: '#6b21a8', 900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div id="mobileMenuBackdrop" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"></div>
+
+    <aside id="sidebar" class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full transform bg-gradient-to-b from-purple-900 to-purple-800 text-white transition-transform duration-300 ease-in-out lg:translate-x-0">
+        <div class="flex h-full flex-col">
+            <div class="flex h-16 items-center justify-between border-b border-purple-700 px-6">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <h1 class="text-xl font-bold">Money Manager</h1>
+                </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-purple-700 rounded p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto px-4 py-6">
+                <ul class="space-y-1">
+                    <li><a href="../../money-manager-dashboard.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 text-purple-100 hover:bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                <span>Transactions</span>
+                            </div>
+                            <svg class="h-4 w-4 nav-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1 hidden">
+                            <a href="../transactions/all-transactions.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">All Transactions</a>
+                        </div>
+                    </li>
+                    <li><a href="../goals.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Financial Goals</a></li>
+                    <li><a href="../bills-subscriptions.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Bills & Subscriptions</a></li>
+                    <li><a href="../categories.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>Categories</a></li>
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span>Settings</span>
+                            </div>
+                            <svg class="h-4 w-4 nav-chevron" style="transform: rotate(180deg)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1">
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Profile</a>
+                            <a href="preferences.html" class="block px-4 py-2 text-sm bg-purple-600 text-white rounded">Preferences</a>
+                            <a href="notifications.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Notifications</a>
+                            <a href="security.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Security</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="border-t border-purple-700 p-4">
+                <div class="flex items-center">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=9333ea&color=fff" alt="User" class="h-10 w-10 rounded-full">
+                    <div class="ml-3 flex-1">
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-purple-300">john@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="lg:pl-64">
+        <header class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Preferences</h2>
+                        <p class="text-sm text-gray-500">Customize your app experience</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-4 md:p-6 lg:p-8">
+            <div class="mb-6">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8">
+                        <a href="profile.html" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Profile</a>
+                        <a href="preferences.html" class="border-b-2 border-purple-600 py-4 px-1 text-sm font-medium text-purple-600">Preferences</a>
+                        <a href="notifications.html" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Notifications</a>
+                        <a href="security.html" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Security</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Regional Settings -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Regional Settings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Currency</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>USD - US Dollar ($)</option>
+                            <option>EUR - Euro (€)</option>
+                            <option>GBP - British Pound (£)</option>
+                            <option>JPY - Japanese Yen (¥)</option>
+                            <option>CAD - Canadian Dollar ($)</option>
+                            <option>AUD - Australian Dollar ($)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>English (US)</option>
+                            <option>English (UK)</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                            <option>German</option>
+                            <option>Japanese</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date Format</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>MM/DD/YYYY (11/17/2025)</option>
+                            <option>DD/MM/YYYY (17/11/2025)</option>
+                            <option>YYYY-MM-DD (2025-11-17)</option>
+                            <option>DD MMM YYYY (17 Nov 2025)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Time Format</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>12-hour (3:30 PM)</option>
+                            <option>24-hour (15:30)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Timezone</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>Pacific Time (PT)</option>
+                            <option>Mountain Time (MT)</option>
+                            <option>Central Time (CT)</option>
+                            <option>Eastern Time (ET)</option>
+                            <option>UTC</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Week Starts On</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>Monday</option>
+                            <option selected>Sunday</option>
+                            <option>Saturday</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Default Account Settings -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Default Account Settings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Default Account for Transactions</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>Chase Checking (****1234)</option>
+                            <option>Wells Fargo Savings (****5678)</option>
+                            <option>Bank of America Credit (****9012)</option>
+                            <option>Ask each time</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Default Category for Income</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>Salary</option>
+                            <option>Freelance</option>
+                            <option>Investments</option>
+                            <option>Gifts</option>
+                            <option>Ask each time</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Default Category for Expenses</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>Food & Dining</option>
+                            <option>Shopping</option>
+                            <option>Transportation</option>
+                            <option selected>Ask each time</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display Preferences -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Display Preferences</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-gray-900">Theme</p>
+                            <p class="text-sm text-gray-500">Choose your preferred color scheme</p>
+                        </div>
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>Light</option>
+                            <option>Dark</option>
+                            <option>Auto (System)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Dashboard View</p>
+                            <p class="text-sm text-gray-500">Default view when opening the app</p>
+                        </div>
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option selected>Overview</option>
+                            <option>Transactions</option>
+                            <option>Budget</option>
+                            <option>Accounts</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Show Cents</p>
+                            <p class="text-sm text-gray-500">Display amounts with decimal values</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Compact View</p>
+                            <p class="text-sm text-gray-500">Use smaller spacing in lists and tables</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auto-Categorization -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Auto-Categorization</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-gray-900">Enable Auto-Categorization</p>
+                            <p class="text-sm text-gray-500">Automatically categorize transactions based on merchant names</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Learn from Manual Categories</p>
+                            <p class="text-sm text-gray-500">Create new rules when you manually categorize transactions</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Require Confirmation</p>
+                            <p class="text-sm text-gray-500">Ask for confirmation before auto-categorizing</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Privacy -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Data & Privacy</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-gray-900">Auto Sync</p>
+                            <p class="text-sm text-gray-500">Automatically sync transactions from linked accounts</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t">
+                        <div>
+                            <p class="font-medium text-gray-900">Share Anonymous Usage Data</p>
+                            <p class="text-sm text-gray-500">Help improve the app by sharing anonymous usage statistics</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <button class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">Reset to Defaults</button>
+                <button class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">Save Preferences</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+
+        openSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-collapsible').forEach(button => {
+            button.addEventListener('click', function() {
+                const submenu = this.nextElementSibling;
+                const chevron = this.querySelector('.nav-chevron');
+                if (submenu && submenu.classList.contains('nav-submenu')) {
+                    submenu.classList.toggle('hidden');
+                    if (chevron) {
+                        chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
