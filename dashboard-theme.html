@@ -1087,6 +1087,234 @@
                 </div>
             </section>
 
+            <!-- Cards Section -->
+            <section id="cards" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Cards</h2>
+                    <p class="text-gray-600 mb-6">Various card styles and layouts</p>
+
+                    <!-- Basic Cards -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Cards</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Simple Card</h4>
+                                <p class="text-gray-600">This is a basic card with just text content. Perfect for simple information display.</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Card with Icon</h4>
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-purple-100 p-3 rounded-lg">
+                                        <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-600">Card with an icon element for visual appeal.</p>
+                                </div>
+                            </div>
+                            <div class="bg-purple-600 text-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="text-lg font-semibold mb-2">Colored Card</h4>
+                                <p class="text-purple-100">Card with a colored background for emphasis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards with Header and Footer -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Cards with Header & Footer</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                                <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">Card Header</h4>
+                                </div>
+                                <div class="p-6">
+                                    <p class="text-gray-600 mb-4">This card has a distinct header and footer section, perfect for organizing content into clear sections.</p>
+                                </div>
+                                <div class="bg-gray-50 border-t border-gray-200 px-6 py-4 flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">Last updated: 2 hours ago</span>
+                                    <button class="text-sm text-purple-600 hover:text-purple-700 font-medium">View Details</button>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                                <div class="bg-purple-600 px-6 py-4">
+                                    <h4 class="text-lg font-semibold text-white">Colored Header</h4>
+                                </div>
+                                <div class="p-6">
+                                    <p class="text-gray-600 mb-4">Card with a colored header background for better visual hierarchy.</p>
+                                </div>
+                                <div class="px-6 py-4 flex gap-2">
+                                    <button class="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm">Accept</button>
+                                    <button class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Decline</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Stat Cards</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-sm font-medium text-gray-600">Total Users</div>
+                                    <div class="bg-blue-100 p-2 rounded">
+                                        <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="text-2xl font-bold text-gray-900">12,345</div>
+                                <div class="mt-2 flex items-center text-sm">
+                                    <span class="text-green-600 font-medium">+12.5%</span>
+                                    <span class="text-gray-500 ml-2">from last month</span>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-sm font-medium text-gray-600">Revenue</div>
+                                    <div class="bg-green-100 p-2 rounded">
+                                        <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="text-2xl font-bold text-gray-900">$54,239</div>
+                                <div class="mt-2 flex items-center text-sm">
+                                    <span class="text-green-600 font-medium">+8.2%</span>
+                                    <span class="text-gray-500 ml-2">from last month</span>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-sm font-medium text-gray-600">Orders</div>
+                                    <div class="bg-yellow-100 p-2 rounded">
+                                        <svg class="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="text-2xl font-bold text-gray-900">1,429</div>
+                                <div class="mt-2 flex items-center text-sm">
+                                    <span class="text-red-600 font-medium">-3.1%</span>
+                                    <span class="text-gray-500 ml-2">from last month</span>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-sm font-medium text-gray-600">Conversion</div>
+                                    <div class="bg-purple-100 p-2 rounded">
+                                        <svg class="h-5 w-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="text-2xl font-bold text-gray-900">3.65%</div>
+                                <div class="mt-2 flex items-center text-sm">
+                                    <span class="text-green-600 font-medium">+0.5%</span>
+                                    <span class="text-gray-500 ml-2">from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Cards -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Interactive Cards</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <button class="bg-white border-2 border-gray-200 rounded-lg p-6 text-left hover:border-purple-600 hover:shadow-md transition-all focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">Basic Plan</h4>
+                                    <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Popular</span>
+                                </div>
+                                <div class="mb-4">
+                                    <span class="text-3xl font-bold text-gray-900">$9</span>
+                                    <span class="text-gray-500">/month</span>
+                                </div>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        10 GB Storage
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        5 Users
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Email Support
+                                    </li>
+                                </ul>
+                            </button>
+                            <button class="bg-purple-600 text-white border-2 border-purple-600 rounded-lg p-6 text-left hover:bg-purple-700 hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold">Pro Plan</h4>
+                                    <span class="text-xs bg-white text-purple-600 px-2 py-1 rounded-full font-semibold">Best Value</span>
+                                </div>
+                                <div class="mb-4">
+                                    <span class="text-3xl font-bold">$29</span>
+                                    <span class="text-purple-100">/month</span>
+                                </div>
+                                <ul class="space-y-2 text-sm text-purple-50">
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        100 GB Storage
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Unlimited Users
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Priority Support
+                                    </li>
+                                </ul>
+                            </button>
+                            <button class="bg-white border-2 border-gray-200 rounded-lg p-6 text-left hover:border-purple-600 hover:shadow-md transition-all focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">Enterprise</h4>
+                                </div>
+                                <div class="mb-4">
+                                    <span class="text-3xl font-bold text-gray-900">$99</span>
+                                    <span class="text-gray-500">/month</span>
+                                </div>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Unlimited Storage
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Unlimited Users
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        24/7 Support
+                                    </li>
+                                </ul>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- More sections will be added here -->
 
         </main>
