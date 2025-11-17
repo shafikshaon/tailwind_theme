@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Alerts - Money Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe',
+                            400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce',
+                            800: '#6b21a8', 900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full transform bg-gradient-to-b from-purple-900 to-purple-800 text-white transition-transform duration-300 ease-in-out lg:translate-x-0">
+        <div class="flex h-full flex-col">
+            <div class="flex h-16 items-center justify-between border-b border-purple-700 px-6">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h1 class="text-xl font-bold">Money Manager</h1>
+                </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-purple-700 rounded p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto px-4 py-6">
+                <ul class="space-y-1">
+                    <li><a href="../../money-manager-dashboard.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700"><svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Dashboard</a></li>
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                <span>Budget</span>
+                            </div>
+                            <svg class="h-4 w-4 nav-chevron" style="transform: rotate(180deg)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1">
+                            <a href="overview.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Overview</a>
+                            <a href="create-budget.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Create Budget</a>
+                            <a href="categories.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Categories</a>
+                            <a href="alerts.html" class="block px-4 py-2 text-sm bg-purple-600 text-white rounded">Alerts</a>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 text-purple-100 hover:bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                <span>Transactions</span>
+                            </div>
+                            <svg class="h-4 w-4 nav-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1 hidden">
+                            <a href="../transactions/all-transactions.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">All Transactions</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="lg:pl-64">
+        <header class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Budget Alerts</h2>
+                        <p class="text-sm text-gray-500">Manage your budget notifications and warnings</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
+                        Mark All Read
+                    </button>
+                    <button id="settingsBtn" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
+                        <svg class="h-5 w-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        Settings
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-4 md:p-6 lg:p-8">
+            <!-- Alert Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Critical Alerts</p>
+                            <p class="text-3xl font-bold text-red-600 mt-2">2</p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Warnings</p>
+                            <p class="text-3xl font-bold text-yellow-600 mt-2">3</p>
+                        </div>
+                        <div class="bg-yellow-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Info</p>
+                            <p class="text-3xl font-bold text-blue-600 mt-2">5</p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Total Unread</p>
+                            <p class="text-3xl font-bold text-purple-600 mt-2">10</p>
+                        </div>
+                        <div class="bg-purple-100 p-3 rounded-lg">
+                            <svg class="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="bg-white rounded-lg border border-gray-200 mb-6 p-1 flex space-x-2 overflow-x-auto">
+                <button class="alert-filter active px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium whitespace-nowrap" data-filter="all">All Alerts</button>
+                <button class="alert-filter px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium whitespace-nowrap" data-filter="critical">Critical</button>
+                <button class="alert-filter px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium whitespace-nowrap" data-filter="warning">Warnings</button>
+                <button class="alert-filter px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium whitespace-nowrap" data-filter="info">Info</button>
+                <button class="alert-filter px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium whitespace-nowrap" data-filter="unread">Unread</button>
+            </div>
+
+            <!-- Alerts List -->
+            <div class="space-y-4">
+                <!-- Critical Alert: Overspending -->
+                <div class="bg-white rounded-xl border-l-4 border-red-500 shadow-sm p-6 alert-item" data-type="critical">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-red-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-red-600">Budget Exceeded - Shopping</h3>
+                                <span class="text-xs text-gray-500">2 hours ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">You have exceeded your Shopping budget by <strong>$87.50</strong>. Current spending: <strong>$587.50</strong> out of <strong>$500.00</strong> budgeted (117.5%).</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="overview.html" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium">View Category</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical Alert: Overspending Another Category -->
+                <div class="bg-white rounded-xl border-l-4 border-red-500 shadow-sm p-6 alert-item" data-type="critical">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-red-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-red-600">Budget Limit Reached - Entertainment</h3>
+                                <span class="text-xs text-gray-500">5 hours ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">You've used <strong>95%</strong> of your Entertainment budget. Only <strong>$15.00</strong> remaining out of <strong>$300.00</strong>.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="categories.html" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium">Adjust Budget</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warning: Approaching Limit -->
+                <div class="bg-white rounded-xl border-l-4 border-yellow-500 shadow-sm p-6 alert-item" data-type="warning">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-yellow-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-yellow-600">Approaching Budget Limit - Food & Dining</h3>
+                                <span class="text-xs text-gray-500">1 day ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">You've spent <strong>85%</strong> of your Food & Dining budget. <strong>$119.50</strong> remaining out of <strong>$800.00</strong>.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="overview.html" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 text-sm font-medium">View Details</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warning: High Spending Day -->
+                <div class="bg-white rounded-xl border-l-4 border-yellow-500 shadow-sm p-6 alert-item" data-type="warning">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-yellow-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-yellow-600">High Spending Alert</h3>
+                                <span class="text-xs text-gray-500">2 days ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">Yesterday's spending was <strong>$342.50</strong>, which is <strong>45% higher</strong> than your daily average of <strong>$236.00</strong>.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="../transactions/all-transactions.html" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 text-sm font-medium">View Transactions</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warning: Transportation Budget -->
+                <div class="bg-white rounded-xl border-l-4 border-yellow-500 shadow-sm p-6 alert-item" data-type="warning">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-yellow-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-yellow-600">Budget Warning - Transportation</h3>
+                                <span class="text-xs text-gray-500">3 days ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">You've used <strong>80%</strong> of your Transportation budget. <strong>$60.00</strong> remaining for the rest of the month.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="overview.html" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 text-sm font-medium">View Category</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info: Budget Recommendation -->
+                <div class="bg-white rounded-xl border-l-4 border-blue-500 shadow-sm p-6 alert-item" data-type="info">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-blue-600">Budget Recommendation</h3>
+                                <span class="text-xs text-gray-500">1 week ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">Based on your spending patterns, consider increasing your Food & Dining budget by <strong>$100</strong> and decreasing Healthcare by <strong>$50</strong> for better budget accuracy.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="categories.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">Apply Suggestion</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info: Monthly Summary Available -->
+                <div class="bg-white rounded-xl border-l-4 border-blue-500 shadow-sm p-6 alert-item" data-type="info">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-blue-600">October Budget Report Ready</h3>
+                                <span class="text-xs text-gray-500">1 week ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">Your monthly budget report for October 2025 is now available. You saved <strong>$234.50</strong> compared to last month.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">View Report</button>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info: Budget Created -->
+                <div class="bg-white rounded-xl border-l-4 border-green-500 shadow-sm p-6 alert-item" data-type="info">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-green-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-green-600">Budget Successfully Created</h3>
+                                <span class="text-xs text-gray-500">2 weeks ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">Your November 2025 budget has been created with a total of <strong>$5,500.00</strong> across 8 categories.</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <a href="overview.html" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium">View Budget</a>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info: Savings Goal -->
+                <div class="bg-white rounded-xl border-l-4 border-purple-500 shadow-sm p-6 alert-item" data-type="info">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-purple-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-purple-600">Great Job Saving!</h3>
+                                <span class="text-xs text-gray-500">2 weeks ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">You're on track to save <strong>$1,117.50</strong> this month. Keep up the good work!</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info: Weekly Summary -->
+                <div class="bg-white rounded-xl border-l-4 border-blue-500 shadow-sm p-6 alert-item" data-type="info">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-100 p-3 rounded-lg">
+                            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-blue-600">Weekly Budget Summary</h3>
+                                <span class="text-xs text-gray-500">3 weeks ago</span>
+                            </div>
+                            <p class="text-gray-700 mt-2">This week you spent <strong>$896.50</strong> across 28 transactions. Your most used category was Food & Dining (<strong>$324.00</strong>).</p>
+                            <div class="mt-4 flex items-center space-x-3">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">View Details</button>
+                                <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Settings Panel -->
+            <div id="settingsPanel" class="hidden mt-6 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-6">Notification Preferences</h3>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-md font-semibold text-gray-900 mb-3">Alert Types</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Overspending Alerts</p>
+                                    <p class="text-sm text-gray-500">Notify when budget is exceeded</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Budget Warnings</p>
+                                    <p class="text-sm text-gray-500">Alert when reaching 80% of budget</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">High Spending Alerts</p>
+                                    <p class="text-sm text-gray-500">Notify for unusually high daily spending</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Budget Recommendations</p>
+                                    <p class="text-sm text-gray-500">Receive AI-powered budget suggestions</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-md font-semibold text-gray-900 mb-3">Report Frequency</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Daily Summary</p>
+                                    <p class="text-sm text-gray-500">Daily spending summary</p>
+                                </div>
+                                <input type="checkbox" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Weekly Report</p>
+                                    <p class="text-sm text-gray-500">Weekly budget performance</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Monthly Report</p>
+                                    <p class="text-sm text-gray-500">End of month summary</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-md font-semibold text-gray-900 mb-3">Delivery Method</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Email Notifications</p>
+                                    <p class="text-sm text-gray-500">Receive alerts via email</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">Push Notifications</p>
+                                    <p class="text-sm text-gray-500">Mobile and browser push alerts</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-purple-300 cursor-pointer">
+                                <div>
+                                    <p class="font-medium text-gray-900">SMS Alerts</p>
+                                    <p class="text-sm text-gray-500">Critical alerts via text message</p>
+                                </div>
+                                <input type="checkbox" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-200">
+                        <button class="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
+                            Save Preferences
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+
+        openSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-collapsible').forEach(button => {
+            button.addEventListener('click', function() {
+                const submenu = this.nextElementSibling;
+                const chevron = this.querySelector('.nav-chevron');
+                if (submenu && submenu.classList.contains('nav-submenu')) {
+                    submenu.classList.toggle('hidden');
+                    if (chevron) {
+                        chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+
+        // Toggle settings panel
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.toggle('hidden');
+            if (!settingsPanel.classList.contains('hidden')) {
+                settingsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+
+        // Alert filter functionality
+        document.querySelectorAll('.alert-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                document.querySelectorAll('.alert-filter').forEach(b => {
+                    b.classList.remove('bg-purple-600', 'text-white', 'active');
+                    b.classList.add('text-gray-600');
+                });
+                this.classList.add('bg-purple-600', 'text-white', 'active');
+                this.classList.remove('text-gray-600');
+
+                // Filter alerts
+                const filter = this.getAttribute('data-filter');
+                const alerts = document.querySelectorAll('.alert-item');
+
+                alerts.forEach(alert => {
+                    if (filter === 'all') {
+                        alert.style.display = 'block';
+                    } else {
+                        const alertType = alert.getAttribute('data-type');
+                        alert.style.display = alertType === filter ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

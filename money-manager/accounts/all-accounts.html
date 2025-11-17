@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All Accounts Overview - Money Manager">
+    <title>All Accounts - Money Manager</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Purple/Green Money Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        *:focus-visible {
+            outline: 2px solid #9333ea;
+            outline-offset: 2px;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .sidebar-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideInUp 0.4s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-0 z-50 h-screen w-64 -translate-x-full transform bg-gradient-to-b from-purple-900 to-purple-800 text-white transition-transform duration-300 ease-in-out lg:translate-x-0">
+        <div class="flex h-full flex-col">
+            <!-- Logo -->
+            <div class="flex h-16 items-center justify-between border-b border-purple-700 px-6">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h1 class="text-xl font-bold">Money Manager</h1>
+                </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-purple-700 rounded p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="flex-1 overflow-y-auto sidebar-scroll px-4 py-6">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="../../money-manager-dashboard.html" class="flex items-center px-4 py-2.5 rounded-lg text-purple-100 hover:bg-purple-700">
+                            <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 text-purple-100 hover:bg-purple-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                                <span>Transactions</span>
+                            </div>
+                            <svg class="h-4 w-4 transition-transform nav-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">All Transactions</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Add Transaction</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <button class="nav-collapsible flex items-center justify-between w-full px-4 py-2.5 bg-purple-700 rounded-lg font-medium">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
+                                <span>Accounts</span>
+                            </div>
+                            <svg class="h-4 w-4 transition-transform nav-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform: rotate(180deg);">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="nav-submenu ml-8 mt-1 space-y-1">
+                            <a href="all-accounts.html" class="block px-4 py-2 text-sm bg-purple-600 text-white rounded">All Accounts</a>
+                            <a href="bank-accounts.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Bank Accounts</a>
+                            <a href="credit-cards.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Credit Cards</a>
+                            <a href="savings.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Savings</a>
+                            <a href="investments.html" class="block px-4 py-2 text-sm text-purple-200 hover:text-white hover:bg-purple-700 rounded">Investments</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="border-t border-purple-700 p-4">
+                <div class="flex items-center">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=9333ea&color=fff" alt="User" class="h-10 w-10 rounded-full">
+                    <div class="ml-3 flex-1">
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-purple-300">john@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="lg:pl-64">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">All Accounts</h2>
+                        <p class="text-sm text-gray-500">Overview of all your financial accounts</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium">
+                        <svg class="h-4 w-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Add Account
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-4 md:p-6 lg:p-8">
+            <!-- Net Worth Summary -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <div class="bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl p-6 shadow-lg animate-slide-in">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-purple-100">Total Net Worth</div>
+                        <div class="bg-purple-500 bg-opacity-30 p-2 rounded-lg">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">$187,456.78</div>
+                    <div class="flex items-center text-sm">
+                        <svg class="h-4 w-4 mr-1 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                        <span class="text-green-300 font-medium">+12.3%</span>
+                        <span class="text-purple-200 ml-2">from last month</span>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.1s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Total Assets</div>
+                        <div class="bg-green-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">$203,780.50</div>
+                    <div class="text-sm text-gray-500">Across 8 accounts</div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Total Liabilities</div>
+                        <div class="bg-red-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">$16,323.72</div>
+                    <div class="text-sm text-gray-500">Credit & loans</div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow animate-slide-in" style="animation-delay: 0.3s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-sm font-medium text-gray-600">Monthly Cash Flow</div>
+                        <div class="bg-blue-100 p-2 rounded-lg">
+                            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">+$4,215.50</div>
+                    <div class="text-sm text-gray-500">Average this month</div>
+                </div>
+            </div>
+
+            <!-- Bank Accounts Section -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Bank Accounts</h3>
+                    <a href="bank-accounts.html" class="text-sm text-purple-600 hover:text-purple-700 font-medium">View Details</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Checking Account -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Chase Checking</h4>
+                                    <p class="text-xs text-gray-500">••••4532</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded">Checking</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Current Balance</p>
+                            <p class="text-2xl font-bold text-gray-900">$8,456.23</p>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">Available: $8,456.23</span>
+                            <span class="text-green-600 font-medium">+2.3%</span>
+                        </div>
+                    </div>
+
+                    <!-- Savings Account -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">High Yield Savings</h4>
+                                    <p class="text-xs text-gray-500">••••7891</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded">Savings</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Current Balance</p>
+                            <p class="text-2xl font-bold text-gray-900">$25,340.67</p>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">APY: 4.50%</span>
+                            <span class="text-green-600 font-medium">+8.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credit Cards Section -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Credit Cards</h3>
+                    <a href="credit-cards.html" class="text-sm text-purple-600 hover:text-purple-700 font-medium">View Details</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Credit Card 1 -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-purple-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Chase Sapphire</h4>
+                                    <p class="text-xs text-gray-500">••••8934</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-purple-100 text-purple-800 rounded">Credit</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Current Balance</p>
+                            <p class="text-2xl font-bold text-gray-900">$2,456.87</p>
+                        </div>
+                        <div class="mb-3">
+                            <div class="flex items-center justify-between text-xs text-gray-600 mb-1">
+                                <span>Credit Used</span>
+                                <span>$2,457 / $10,000</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 24.6%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-red-600 font-medium">Due: Nov 25</span>
+                            <span class="text-gray-500">Min: $75</span>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card 2 -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Amex Gold</h4>
+                                    <p class="text-xs text-gray-500">••••1009</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-orange-100 text-orange-800 rounded">Credit</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Current Balance</p>
+                            <p class="text-2xl font-bold text-gray-900">$1,324.58</p>
+                        </div>
+                        <div class="mb-3">
+                            <div class="flex items-center justify-between text-xs text-gray-600 mb-1">
+                                <span>Credit Used</span>
+                                <span>$1,325 / $15,000</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 8.8%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Due: Dec 3</span>
+                            <span class="text-gray-500">Min: $50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Accounts -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Investment Accounts</h3>
+                    <a href="investments.html" class="text-sm text-purple-600 hover:text-purple-700 font-medium">View Details</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 401k Account -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-indigo-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Fidelity 401(k)</h4>
+                                    <p class="text-xs text-gray-500">Retirement</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded">401(k)</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Portfolio Value</p>
+                            <p class="text-2xl font-bold text-gray-900">$98,456.32</p>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">YTD Return</span>
+                            <span class="text-green-600 font-medium">+18.7%</span>
+                        </div>
+                    </div>
+
+                    <!-- Brokerage Account -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-teal-100 p-3 rounded-lg">
+                                    <svg class="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Robinhood</h4>
+                                    <p class="text-xs text-gray-500">Individual Brokerage</p>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-semibold bg-teal-100 text-teal-800 rounded">Brokerage</span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-1">Portfolio Value</p>
+                            <p class="text-2xl font-bold text-gray-900">$43,290.12</p>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">Total Gain/Loss</span>
+                            <span class="text-green-600 font-medium">+$6,542.27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions Across All Accounts -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-900">Recent Transactions</h3>
+                        <select class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>All Accounts</option>
+                            <option>Bank Accounts</option>
+                            <option>Credit Cards</option>
+                            <option>Investments</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="bg-blue-100 p-2 rounded mr-2">
+                                            <svg class="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-900">Chase ••4532</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <p class="text-sm font-medium text-gray-900">Salary Deposit</p>
+                                    <p class="text-xs text-gray-500">Acme Corp</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 15, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-green-600">+$5,000.00</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="bg-purple-100 p-2 rounded mr-2">
+                                            <svg class="h-4 w-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-900">Sapphire ••8934</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <p class="text-sm font-medium text-gray-900">Amazon</p>
+                                    <p class="text-xs text-gray-500">Online Shopping</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 16, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-red-600">-$156.78</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="bg-green-100 p-2 rounded mr-2">
+                                            <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-900">Savings ••7891</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <p class="text-sm font-medium text-gray-900">Interest Payment</p>
+                                    <p class="text-xs text-gray-500">Monthly Interest</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 1, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-green-600">+$94.52</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="bg-indigo-100 p-2 rounded mr-2">
+                                            <svg class="h-4 w-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-900">Fidelity 401k</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <p class="text-sm font-medium text-gray-900">Contribution</p>
+                                    <p class="text-xs text-gray-500">Employer Match</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 15, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-green-600">+$750.00</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="bg-orange-100 p-2 rounded mr-2">
+                                            <svg class="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-900">Amex ••1009</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <p class="text-sm font-medium text-gray-900">Whole Foods</p>
+                                    <p class="text-xs text-gray-500">Groceries</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Nov 16, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-red-600">-$124.35</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+
+        openSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-collapsible').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.nextElementSibling;
+                const chevron = this.querySelector('.nav-chevron');
+
+                if (submenu && submenu.classList.contains('nav-submenu')) {
+                    submenu.classList.toggle('hidden');
+                    if (chevron) {
+                        chevron.style.transform = submenu.classList.contains('hidden')
+                            ? 'rotate(0deg)'
+                            : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
