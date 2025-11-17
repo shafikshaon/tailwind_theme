@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Components - Dashboard Component Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <a href="index.html" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Components
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-16">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Navigation Components</h2>
+                <p class="text-gray-600 mb-8">Various navbar and sidebar navigation patterns for dashboards and applications</p>
+
+                <!-- Horizontal Navbar - Primary -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Primary</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <nav class="bg-purple-800 text-white">
+                            <div class="px-4 py-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-8">
+                                        <h1 class="text-xl font-bold">Dashboard</h1>
+                                        <div class="hidden md:flex space-x-6">
+                                            <a href="#" class="text-white hover:text-purple-200 transition-colors">Home</a>
+                                            <a href="#" class="text-white hover:text-purple-200 transition-colors">Analytics</a>
+                                            <a href="#" class="text-white hover:text-purple-200 transition-colors">Reports</a>
+                                            <a href="#" class="text-white hover:text-purple-200 transition-colors">Settings</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <button class="p-2 hover:bg-purple-700 rounded-lg" aria-label="Notifications">
+                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-2 hover:bg-purple-700 rounded-lg md:hidden" aria-label="Menu">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                                            </svg>
+                                        </button>
+                                        <div class="hidden md:flex items-center space-x-2">
+                                            <img src="https://via.placeholder.com/32" alt="User" class="h-8 w-8 rounded-full">
+                                            <span class="text-sm">John Doe</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Horizontal Navbar - Light -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Light</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <nav class="bg-white border-b border-gray-200">
+                            <div class="px-4 py-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-8">
+                                        <h1 class="text-xl font-bold text-purple-800">Dashboard</h1>
+                                        <div class="hidden md:flex space-x-6">
+                                            <a href="#" class="text-purple-600 border-b-2 border-purple-600 pb-1 font-medium">Home</a>
+                                            <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors pb-1">Analytics</a>
+                                            <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors pb-1">Reports</a>
+                                            <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors pb-1">Settings</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="px-4 py-2 text-sm text-purple-600 hover:bg-purple-50 rounded-lg transition-colors">
+                                            Sign In
+                                        </button>
+                                        <button class="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Horizontal Navbar with Search -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar with Search</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <nav class="bg-white shadow">
+                            <div class="px-4 py-3">
+                                <div class="flex items-center justify-between gap-4">
+                                    <h1 class="text-xl font-bold text-purple-800 whitespace-nowrap">Logo</h1>
+                                    <div class="flex-1 max-w-md">
+                                        <div class="relative">
+                                            <input type="search" placeholder="Search..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
+                                            <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 hover:bg-gray-100 rounded-lg" aria-label="Notifications">
+                                            <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                                            </svg>
+                                        </button>
+                                        <img src="https://via.placeholder.com/32" alt="User" class="h-8 w-8 rounded-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Vertical Sidebar - Dark -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Vertical Sidebar - Dark</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="flex h-96">
+                            <aside class="w-64 bg-purple-800 text-white">
+                                <div class="p-4 border-b border-purple-700">
+                                    <h2 class="text-xl font-bold">Dashboard</h2>
+                                </div>
+                                <nav class="p-4 space-y-1">
+                                    <a href="#" class="flex items-center px-4 py-2.5 bg-purple-700 rounded-lg text-white">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                        </svg>
+                                        Dashboard
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        Analytics
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                        </svg>
+                                        Users
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        Reports
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Settings
+                                    </a>
+                                </nav>
+                                <div class="absolute bottom-0 w-64 p-4 border-t border-purple-700">
+                                    <div class="flex items-center">
+                                        <img src="https://via.placeholder.com/40" alt="User" class="h-10 w-10 rounded-full">
+                                        <div class="ml-3">
+                                            <p class="text-sm font-medium">John Doe</p>
+                                            <p class="text-xs text-purple-300">john@example.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                            <div class="flex-1 bg-gray-50 p-6">
+                                <p class="text-gray-500 text-sm">Main content area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vertical Sidebar - Light -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Vertical Sidebar - Light</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="flex h-96">
+                            <aside class="w-64 bg-white border-r border-gray-200">
+                                <div class="p-4 border-b border-gray-200">
+                                    <h2 class="text-xl font-bold text-purple-800">Dashboard</h2>
+                                </div>
+                                <nav class="p-4 space-y-1">
+                                    <a href="#" class="flex items-center px-4 py-2.5 bg-purple-50 text-purple-700 rounded-lg font-medium">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                        </svg>
+                                        Dashboard
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        Analytics
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                        </svg>
+                                        Users
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        Reports
+                                    </a>
+                                </nav>
+                            </aside>
+                            <div class="flex-1 bg-gray-50 p-6">
+                                <p class="text-gray-500 text-sm">Main content area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compact Sidebar -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Compact Sidebar (Icon Only)</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="flex h-96">
+                            <aside class="w-16 bg-purple-800 text-white">
+                                <div class="p-3 border-b border-purple-700 flex items-center justify-center">
+                                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                    </svg>
+                                </div>
+                                <nav class="p-2 space-y-2">
+                                    <a href="#" class="flex items-center justify-center p-3 bg-purple-700 rounded-lg" aria-label="Dashboard">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center p-3 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors" aria-label="Analytics">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center p-3 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors" aria-label="Users">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-center p-3 text-purple-200 hover:bg-purple-700 rounded-lg transition-colors" aria-label="Settings">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </a>
+                                </nav>
+                            </aside>
+                            <div class="flex-1 bg-gray-50 p-6">
+                                <p class="text-gray-500 text-sm">Main content area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar with Collapsible Sections -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Sidebar with Collapsible Sections</h3>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="flex h-96">
+                            <aside class="w-64 bg-white border-r border-gray-200">
+                                <div class="p-4 border-b border-gray-200">
+                                    <h2 class="text-xl font-bold text-purple-800">Dashboard</h2>
+                                </div>
+                                <nav class="p-4 space-y-1">
+                                    <a href="#" class="flex items-center px-4 py-2.5 bg-purple-50 text-purple-700 rounded-lg font-medium">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                                        </svg>
+                                        Dashboard
+                                    </a>
+
+                                    <!-- Management Section -->
+                                    <div>
+                                        <button class="flex items-center justify-between w-full px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                            <div class="flex items-center">
+                                                <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                                </svg>
+                                                <span>Management</span>
+                                            </div>
+                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                            </svg>
+                                        </button>
+                                        <div class="ml-8 mt-1 space-y-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Users</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Teams</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Roles</a>
+                                        </div>
+                                    </div>
+
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        Analytics
+                                    </a>
+
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        Settings
+                                    </a>
+                                </nav>
+                            </aside>
+                            <div class="flex-1 bg-gray-50 p-6">
+                                <p class="text-gray-500 text-sm">Main content area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
