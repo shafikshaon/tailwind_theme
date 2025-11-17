@@ -50,7 +50,7 @@
 
                 <!-- Horizontal Navbar - Primary -->
                 <div class="mb-12">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Primary</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Primary (Interactive Mobile Menu)</h3>
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <nav class="bg-purple-800 text-white">
                             <div class="px-4 py-3">
@@ -70,7 +70,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                                             </svg>
                                         </button>
-                                        <button class="p-2 hover:bg-purple-700 rounded-lg md:hidden" aria-label="Menu">
+                                        <button onclick="toggleMobileMenu('mobileMenu1')" class="p-2 hover:bg-purple-700 rounded-lg md:hidden" aria-label="Menu">
                                             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                                             </svg>
@@ -81,6 +81,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Mobile Menu -->
+                                <div id="mobileMenu1" class="hidden md:hidden mt-4 pb-3 space-y-2">
+                                    <a href="#" class="block px-4 py-2 text-white hover:bg-purple-700 rounded-lg transition-colors">Home</a>
+                                    <a href="#" class="block px-4 py-2 text-white hover:bg-purple-700 rounded-lg transition-colors">Analytics</a>
+                                    <a href="#" class="block px-4 py-2 text-white hover:bg-purple-700 rounded-lg transition-colors">Reports</a>
+                                    <a href="#" class="block px-4 py-2 text-white hover:bg-purple-700 rounded-lg transition-colors">Settings</a>
+                                    <div class="flex items-center px-4 py-2 mt-2 border-t border-purple-700 pt-3">
+                                        <img src="https://via.placeholder.com/32" alt="User" class="h-8 w-8 rounded-full mr-2">
+                                        <span class="text-sm">John Doe</span>
+                                    </div>
+                                </div>
                             </div>
                         </nav>
                     </div>
@@ -88,7 +99,7 @@
 
                 <!-- Horizontal Navbar - Light -->
                 <div class="mb-12">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Light</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Horizontal Navbar - Light (Interactive Mobile Menu)</h3>
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <nav class="bg-white border-b border-gray-200">
                             <div class="px-4 py-3">
@@ -103,6 +114,26 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center space-x-3">
+                                        <button class="hidden md:block px-4 py-2 text-sm text-purple-600 hover:bg-purple-50 rounded-lg transition-colors">
+                                            Sign In
+                                        </button>
+                                        <button class="hidden md:block px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                                            Sign Up
+                                        </button>
+                                        <button onclick="toggleMobileMenu('mobileMenu2')" class="md:hidden p-2 hover:bg-gray-100 rounded-lg" aria-label="Menu">
+                                            <svg class="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Mobile Menu -->
+                                <div id="mobileMenu2" class="hidden md:hidden mt-4 pb-3 space-y-2 border-t border-gray-200 pt-3">
+                                    <a href="#" class="block px-4 py-2 text-purple-600 bg-purple-50 rounded-lg font-medium">Home</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">Analytics</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">Reports</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">Settings</a>
+                                    <div class="flex flex-col space-y-2 mt-3 pt-3 border-t border-gray-200">
                                         <button class="px-4 py-2 text-sm text-purple-600 hover:bg-purple-50 rounded-lg transition-colors">
                                             Sign In
                                         </button>
@@ -307,20 +338,20 @@
                                         Dashboard
                                     </a>
 
-                                    <!-- Management Section -->
+                                    <!-- Management Section (Interactive Collapsible) -->
                                     <div>
-                                        <button class="flex items-center justify-between w-full px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <button class="sidebar-collapsible flex items-center justify-between w-full px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
                                             <div class="flex items-center">
                                                 <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                                                 </svg>
                                                 <span>Management</span>
                                             </div>
-                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="h-4 w-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform: rotate(0deg)">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                             </svg>
                                         </button>
-                                        <div class="ml-8 mt-1 space-y-1">
+                                        <div class="ml-8 mt-1 space-y-1 hidden">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Users</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Teams</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded transition-colors">Roles</a>
@@ -360,5 +391,50 @@
             <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
         </div>
     </footer>
+
+    <!-- JavaScript for Interactive Components -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMobileMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            menu.classList.toggle('hidden');
+        }
+
+        // Close mobile menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const isMenuButton = event.target.closest('[onclick^="toggleMobileMenu"]');
+            const mobileMenus = document.querySelectorAll('[id^="mobileMenu"]');
+
+            if (!isMenuButton) {
+                mobileMenus.forEach(menu => {
+                    if (!menu.contains(event.target)) {
+                        menu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
+        // Toggle collapsible sidebar sections
+        function toggleSidebarSection(event) {
+            const button = event.currentTarget;
+            const submenu = button.nextElementSibling;
+            const icon = button.querySelector('svg:last-child');
+
+            if (submenu && submenu.classList.contains('ml-8')) {
+                submenu.classList.toggle('hidden');
+                if (icon) {
+                    icon.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            }
+        }
+
+        // Add click handlers to collapsible sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleButtons = document.querySelectorAll('.sidebar-collapsible');
+            collapsibleButtons.forEach(button => {
+                button.addEventListener('click', toggleSidebarSection);
+            });
+        });
+    </script>
 </body>
 </html>

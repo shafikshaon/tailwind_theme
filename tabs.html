@@ -48,33 +48,63 @@
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">Tabs</h2>
                     <p class="text-gray-600 mb-6">Tab navigation components</p>
 
-                    <!-- Horizontal Tabs -->
+                    <!-- Horizontal Tabs (Interactive) -->
                     <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Horizontal Tabs</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Horizontal Tabs (Interactive - Click to Switch)</h3>
                         <div class="border-b border-gray-200">
                             <nav class="-mb-px flex space-x-8">
-                                <button class="border-b-2 border-purple-600 py-4 px-1 text-sm font-medium text-purple-600">Profile</button>
-                                <button class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Settings</button>
-                                <button class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Notifications</button>
-                                <button class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Billing</button>
+                                <button onclick="switchTab('tab1', 0, this)" class="border-b-2 border-purple-600 py-4 px-1 text-sm font-medium text-purple-600">Profile</button>
+                                <button onclick="switchTab('tab1', 1, this)" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Settings</button>
+                                <button onclick="switchTab('tab1', 2, this)" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Notifications</button>
+                                <button onclick="switchTab('tab1', 3, this)" class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Billing</button>
                             </nav>
                         </div>
-                        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                            <p class="text-gray-600">Profile tab content goes here...</p>
+                        <div id="tab1-content" class="mt-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">Profile</h4>
+                                <p class="text-gray-600">Manage your profile information and preferences.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Settings</h4>
+                                <p class="text-gray-600">Configure your account settings and preferences.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Notifications</h4>
+                                <p class="text-gray-600">Manage your notification preferences and alerts.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Billing</h4>
+                                <p class="text-gray-600">View and manage your billing information.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Pills Style Tabs -->
+                    <!-- Pills Style Tabs (Interactive) -->
                     <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Pills Style Tabs</h3>
-                        <nav class="flex space-x-2 mb-4">
-                            <button class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg">Overview</button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Analytics</button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Reports</button>
-                            <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Settings</button>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Pills Style Tabs (Interactive)</h3>
+                        <nav class="flex flex-wrap space-x-2 mb-4">
+                            <button onclick="switchPillTab('tab2', 0, this)" class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg">Overview</button>
+                            <button onclick="switchPillTab('tab2', 1, this)" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Analytics</button>
+                            <button onclick="switchPillTab('tab2', 2, this)" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Reports</button>
+                            <button onclick="switchPillTab('tab2', 3, this)" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Settings</button>
                         </nav>
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <p class="text-gray-600">Overview tab content goes here...</p>
+                        <div id="tab2-content">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">Overview</h4>
+                                <p class="text-gray-600">Get a quick overview of your dashboard metrics.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Analytics</h4>
+                                <p class="text-gray-600">View detailed analytics and insights.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Reports</h4>
+                                <p class="text-gray-600">Generate and download reports.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg hidden">
+                                <h4 class="font-semibold text-gray-900 mb-2">Settings</h4>
+                                <p class="text-gray-600">Configure your dashboard settings.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -110,5 +140,58 @@
             <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
         </div>
     </footer>
+
+    <!-- JavaScript for Interactive Tabs -->
+    <script>
+        // Switch tabs for horizontal tabs with border
+        function switchTab(tabGroup, index, button) {
+            const contentContainer = document.getElementById(tabGroup + '-content');
+            const contents = contentContainer.children;
+            const buttons = button.parentElement.children;
+
+            // Hide all content panels
+            Array.from(contents).forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Reset all buttons
+            Array.from(buttons).forEach(btn => {
+                btn.classList.remove('border-purple-600', 'text-purple-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            // Show selected content
+            contents[index].classList.remove('hidden');
+
+            // Activate selected button
+            button.classList.remove('border-transparent', 'text-gray-500');
+            button.classList.add('border-purple-600', 'text-purple-600');
+        }
+
+        // Switch tabs for pill-style tabs
+        function switchPillTab(tabGroup, index, button) {
+            const contentContainer = document.getElementById(tabGroup + '-content');
+            const contents = contentContainer.children;
+            const buttons = button.parentElement.children;
+
+            // Hide all content panels
+            Array.from(contents).forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Reset all buttons
+            Array.from(buttons).forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+
+            // Show selected content
+            contents[index].classList.remove('hidden');
+
+            // Activate selected button
+            button.classList.remove('bg-gray-100', 'text-gray-700');
+            button.classList.add('bg-purple-600', 'text-white');
+        }
+    </script>
 </body>
 </html>

@@ -48,18 +48,18 @@
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">Dropdowns & Menus</h2>
                     <p class="text-gray-600 mb-6">Interactive dropdown menus and hover menus</p>
 
-                    <!-- Basic Dropdown -->
+                    <!-- Basic Dropdown (Interactive) -->
                     <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Dropdown</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Dropdown (Interactive - Click to Toggle)</h3>
                         <div class="relative inline-block">
-                            <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 inline-flex items-center gap-2">
+                            <button onclick="toggleDropdown('dropdown1')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 inline-flex items-center gap-2">
                                 Options
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <!-- Dropdown menu (hidden by default, use JS to toggle) -->
-                            <div class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            <!-- Dropdown menu -->
+                            <div id="dropdown1" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg">Profile</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Support</a>
@@ -71,15 +71,15 @@
 
                     <!-- Dropdown with Icons -->
                     <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Dropdown with Icons</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Dropdown with Icons (Interactive)</h3>
                         <div class="relative inline-block">
-                            <button class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 inline-flex items-center gap-2">
+                            <button onclick="toggleDropdown('dropdown2')" class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 inline-flex items-center gap-2">
                                 Actions
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            <div id="dropdown2" class="hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                                 <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
@@ -111,9 +111,9 @@
 
                     <!-- User Profile Dropdown -->
                     <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">User Profile Dropdown</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">User Profile Dropdown (Interactive)</h3>
                         <div class="relative inline-block">
-                            <button class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full">
+                            <button onclick="toggleDropdown('dropdown3')" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full">
                                 <div class="h-10 w-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold">
                                     JD
                                 </div>
@@ -121,7 +121,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <div class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            <div id="dropdown3" class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                                 <div class="px-4 py-3 border-b border-gray-200">
                                     <p class="text-sm font-medium text-gray-900">John Doe</p>
                                     <p class="text-xs text-gray-500">john.doe@example.com</p>
@@ -204,5 +204,48 @@
             <p class="text-gray-400 text-sm">Dashboard Component Library &copy; 2025</p>
         </div>
     </footer>
+
+    <!-- JavaScript for Interactive Dropdowns -->
+    <script>
+        // Toggle Dropdown
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const allDropdowns = document.querySelectorAll('[id^="dropdown"]');
+
+            // Close all other dropdowns
+            allDropdowns.forEach(dd => {
+                if (dd.id !== dropdownId) {
+                    dd.classList.add('hidden');
+                }
+            });
+
+            // Toggle the current dropdown
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const isDropdownButton = event.target.closest('[onclick^="toggleDropdown"]');
+            const dropdowns = document.querySelectorAll('[id^="dropdown"]');
+
+            if (!isDropdownButton) {
+                dropdowns.forEach(dropdown => {
+                    if (!dropdown.contains(event.target)) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
+        // Close dropdowns when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const dropdowns = document.querySelectorAll('[id^="dropdown"]');
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
