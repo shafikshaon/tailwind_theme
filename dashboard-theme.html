@@ -1315,6 +1315,255 @@
                 </div>
             </section>
 
+            <!-- Typography Section -->
+            <section id="typography" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Typography</h2>
+                    <p class="text-gray-600 mb-6">Text styles, headings, and formatting options</p>
+
+                    <!-- Headings -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Headings</h3>
+                        <div class="space-y-4">
+                            <h1 class="text-5xl font-bold text-gray-900">Heading 1 - 5xl (3rem / 48px)</h1>
+                            <h2 class="text-4xl font-bold text-gray-900">Heading 2 - 4xl (2.25rem / 36px)</h2>
+                            <h3 class="text-3xl font-bold text-gray-900">Heading 3 - 3xl (1.875rem / 30px)</h3>
+                            <h4 class="text-2xl font-semibold text-gray-900">Heading 4 - 2xl (1.5rem / 24px)</h4>
+                            <h5 class="text-xl font-semibold text-gray-900">Heading 5 - xl (1.25rem / 20px)</h5>
+                            <h6 class="text-lg font-semibold text-gray-900">Heading 6 - lg (1.125rem / 18px)</h6>
+                        </div>
+                    </div>
+
+                    <!-- Body Text -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Body Text</h3>
+                        <div class="space-y-4">
+                            <p class="text-base text-gray-900">
+                                <span class="font-semibold">Base (default)</span> - This is regular body text at the base size (1rem / 16px).
+                                Perfect for main content and paragraphs. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-semibold">Small</span> - Smaller text size (0.875rem / 14px) useful for secondary information and captions.
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="font-semibold">Extra Small</span> - Very small text (0.75rem / 12px) for footnotes and minor details.
+                            </p>
+                            <p class="text-lg text-gray-900">
+                                <span class="font-semibold">Large</span> - Larger body text (1.125rem / 18px) for emphasis or lead paragraphs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Text Styles -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Text Styles</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-900 font-bold">Bold Text - font-bold</p>
+                            <p class="text-gray-900 font-semibold">Semibold Text - font-semibold</p>
+                            <p class="text-gray-900 font-medium">Medium Text - font-medium</p>
+                            <p class="text-gray-900 font-normal">Normal Text - font-normal</p>
+                            <p class="text-gray-900 italic">Italic Text - italic</p>
+                            <p class="text-gray-900 underline">Underlined Text - underline</p>
+                            <p class="text-gray-900 line-through">Strikethrough Text - line-through</p>
+                            <p class="text-gray-900 uppercase">Uppercase Text - uppercase</p>
+                            <p class="text-gray-900 lowercase">LOWERCASE TEXT - lowercase</p>
+                            <p class="text-gray-900 capitalize">capitalized text - capitalize</p>
+                        </div>
+                    </div>
+
+                    <!-- Lists -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Lists</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">Unordered List</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>First item in the list</li>
+                                    <li>Second item in the list</li>
+                                    <li>Third item with more content
+                                        <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                                            <li>Nested item one</li>
+                                            <li>Nested item two</li>
+                                        </ul>
+                                    </li>
+                                    <li>Fourth item in the list</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">Ordered List</h4>
+                                <ol class="list-decimal list-inside text-gray-600 space-y-1">
+                                    <li>First numbered item</li>
+                                    <li>Second numbered item</li>
+                                    <li>Third numbered item
+                                        <ol class="list-decimal list-inside ml-6 mt-1 space-y-1">
+                                            <li>Nested numbered item</li>
+                                            <li>Another nested item</li>
+                                        </ol>
+                                    </li>
+                                    <li>Fourth numbered item</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code & Quotes -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Code & Quotes</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Inline Code:</p>
+                                <p class="text-gray-900">Use the <code class="px-2 py-1 bg-gray-100 text-purple-600 rounded text-sm font-mono">className</code> prop to style your components.</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Code Block:</p>
+                                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm font-mono">function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));</code></pre>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">Blockquote:</p>
+                                <blockquote class="border-l-4 border-purple-600 pl-4 py-2 bg-purple-50 italic text-gray-700">
+                                    "Design is not just what it looks like and feels like. Design is how it works."
+                                    <footer class="text-sm text-gray-600 mt-2 not-italic">— Steve Jobs</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spacing & Sizing Section -->
+            <section id="spacing" class="mb-16">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Spacing & Sizing</h2>
+                    <p class="text-gray-600 mb-6">Consistent spacing and sizing scale using Tailwind's utility classes</p>
+
+                    <!-- Spacing Scale -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Spacing Scale (Padding & Margin)</h3>
+                        <p class="text-sm text-gray-600 mb-4">Tailwind uses a spacing scale where 1 unit = 0.25rem (4px)</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-4">
+                                <span class="w-16 text-sm font-mono text-gray-600">p-1</span>
+                                <div class="bg-purple-100 p-1"><div class="bg-purple-600 h-8 w-24"></div></div>
+                                <span class="text-xs text-gray-500">4px / 0.25rem</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-16 text-sm font-mono text-gray-600">p-2</span>
+                                <div class="bg-purple-100 p-2"><div class="bg-purple-600 h-8 w-24"></div></div>
+                                <span class="text-xs text-gray-500">8px / 0.5rem</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-16 text-sm font-mono text-gray-600">p-4</span>
+                                <div class="bg-purple-100 p-4"><div class="bg-purple-600 h-8 w-24"></div></div>
+                                <span class="text-xs text-gray-500">16px / 1rem</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-16 text-sm font-mono text-gray-600">p-6</span>
+                                <div class="bg-purple-100 p-6"><div class="bg-purple-600 h-8 w-24"></div></div>
+                                <span class="text-xs text-gray-500">24px / 1.5rem</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="w-16 text-sm font-mono text-gray-600">p-8</span>
+                                <div class="bg-purple-100 p-8"><div class="bg-purple-600 h-8 w-24"></div></div>
+                                <span class="text-xs text-gray-500">32px / 2rem</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gap Spacing -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Gap Spacing (Flexbox & Grid)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">gap-2 (8px)</p>
+                                <div class="flex gap-2">
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">gap-4 (16px)</p>
+                                <div class="flex gap-4">
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 mb-2">gap-6 (24px)</p>
+                                <div class="flex gap-6">
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                    <div class="bg-purple-600 h-12 w-12 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Border Radius -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Border Radius</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-full rounded mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded (4px)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-full rounded-md mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded-md (6px)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-full rounded-lg mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded-lg (8px)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-full rounded-xl mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded-xl (12px)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-full rounded-2xl mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded-2xl (16px)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-600 h-16 w-16 mx-auto rounded-full mb-2"></div>
+                                <p class="text-sm text-gray-600">rounded-full</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shadows -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Box Shadows</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <div class="text-center">
+                                <div class="bg-white h-20 rounded-lg shadow-sm mb-2"></div>
+                                <p class="text-sm text-gray-600">shadow-sm</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white h-20 rounded-lg shadow mb-2"></div>
+                                <p class="text-sm text-gray-600">shadow</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white h-20 rounded-lg shadow-md mb-2"></div>
+                                <p class="text-sm text-gray-600">shadow-md</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white h-20 rounded-lg shadow-lg mb-2"></div>
+                                <p class="text-sm text-gray-600">shadow-lg</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white h-20 rounded-lg shadow-xl mb-2"></div>
+                                <p class="text-sm text-gray-600">shadow-xl</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- More sections will be added here -->
 
         </main>
